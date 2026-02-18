@@ -1,73 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trivox | Build. Clean. Automate Data Easily</title>
-    <meta name="description" content="Professional data tools for students, analysts, and small businesses. Clean CSVs and automate workflows.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRIVOX</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav id="navbar">
-        <a href="index.html" class="logo">TRIVOX</a>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#tools">Tools</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="btn-primary" onclick="location.href='#tools'">Get Started</button>
-    </nav>
+<div class="scroll-progress"></div>
+<div class="background-grid"></div>
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
 
-    <header class="hero" id="home">
-        <div class="hero-content">
-            <span class="badge">Data Automation 2.0</span>
-            <h1>Data Logistics, <br><span class="text-gradient">Refined.</span></h1>
-            <p>The premium suite for cleaning, converting, and automating your data workflows without ever leaving your browser.</p>
-            <div class="hero-btns">
-                <a href="#tools" class="btn-primary">Launch Pro Tools</a>
-                <a href="#pricing" class="btn-outline">View Plans</a>
-            </div>
-        </div>
-    </header>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">TRIVOX</div>
+  <div class="nav-links">
+    <a href="#hero">Home</a>
+    <a href="#features">Tools</a>
+    <a href="#about">About</a>
+    <a href="#cta">Contact</a>
+  </div>
+  <button class="cta-nav">Get Started</button>
+</nav>
 
-    <section class="tool-section" id="tools">
-        <div class="section-header">
-            <h2>CSV Cleaner Pro</h2>
-            <p>Upload your file to experience client-side, privacy-first data refinement.</p>
-        </div>
+<!-- HERO -->
+<section id="hero" class="hero">
+  <p class="tag reveal">DATA AUTOMATION 2.0</p>
 
-        <div class="glass-card tool-container">
-            <div class="upload-box" id="dropZone">
-                <input type="file" id="csvInput" accept=".csv" hidden>
-                <div class="upload-icon">📁</div>
-                <h3>Click or Drag CSV</h3>
-                <p>Maximum file size: 10MB</p>
-                <button class="btn-secondary" onclick="document.getElementById('csvInput').click()">Select File</button>
-            </div>
+ <h1 class="hero-title" id="animated-heading">
+  Data Logistics
+</h1>
 
-            <div id="toolControls" class="tool-controls" style="display: none;">
-                <div class="stats-bar">
-                    <span id="rowCount">Rows: 0</span>
-                    <span id="colCount">Columns: 0</span>
-                </div>
-                <div class="action-grid">
-                    <button class="action-btn" onclick="cleanData('trim')">Trim Spaces</button>
-                    <button class="action-btn" onclick="cleanData('duplicates')">Remove Duplicates</button>
-                    <button class="action-btn" onclick="cleanData('empty')">Drop Empty Rows</button>
-                    <button class="action-btn btn-gold" onclick="downloadCSV()">Download Cleaned .CSV</button>
-                </div>
-                <div class="table-preview-wrapper">
-                    <table id="previewTable"></table>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <div id="toast" class="toast">Action Successful</div>
+  <h2 class="refined shimmer reveal">Refined.</h2>
 
-    <script src="script.js"></script>
+  <p class="subtitle reveal">
+    The premium suite for cleaning, converting and automating
+    large-scale data workflows — engineered for the modern data era.
+  </p>
+
+  <div class="hero-buttons reveal">
+    <button class="primary-btn">Launch Pro Tools</button>
+    <button class="secondary-btn">View Plans</button>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="section">
+  <h2 class="section-title reveal">Powerful Tools</h2>
+
+  <div class="cards">
+    <div class="card reveal">
+      <h3>Automation</h3>
+      <p>Transform repetitive workflows into automated pipelines.</p>
+    </div>
+
+    <div class="card reveal">
+      <h3>Analytics</h3>
+      <p>Real-time dashboards powered by intelligent insights.</p>
+    </div>
+
+    <div class="card reveal">
+      <h3>Optimization</h3>
+      <p>Improve efficiency with predictive data modeling.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section dark">
+  <h2 class="section-title reveal">Built for the Future</h2>
+  <p class="about-text reveal">
+    TRIVOX empowers teams with cutting-edge automation
+    tools designed to scale with your ambitions.
+  </p>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="section">
+  <h2 class="section-title reveal">Ready to Elevate?</h2>
+  <button class="primary-btn reveal">Start Now</button>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
