@@ -1,18 +1,60 @@
-<section class="section">
-<h1>Blog</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights & Blog | Trivox</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
 
-<div class="card">
-<h3>How to Clean CSV Files Fast</h3>
-<p>Learn quick techniques to clean messy datasets.</p>
-</div>
+    <nav class="navbar">
+        <a href="index.html" class="logo">TRIVOX <span>.</span></a>
+        <div class="menu-toggle">☰</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="blog.html" class="active">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
-<div class="card">
-<h3>Common Data Mistakes</h3>
-<p>Avoid these errors while working with spreadsheets.</p>
-</div>
+    <div class="container section-padding" style="margin-top: 60px;">
+        <div class="text-center reveal">
+            <h1>Latest <span class="text-gold">Insights</span></h1>
+            <p class="text-muted">Trends, tutorials, and tips for the modern data analyst.</p>
+        </div>
 
-<div class="card">
-<h3>Automation Tips</h3>
-<p>Save hours using simple automation scripts.</p>
-</div>
-</section>
+        <div class="grid" style="margin-top: 50px;">
+            <article class="card reveal">
+                <div style="height: 200px; background: linear-gradient(45deg, #2e0046, #4a0072); border-radius: 8px; margin-bottom: 20px;"></div>
+                <span class="text-gold" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Tutorial</span>
+                <h3 style="margin: 10px 0;">How to Clean 1 Million Rows in Browser</h3>
+                <p class="text-muted" style="margin-bottom: 20px;">Discover the power of JavaScript's V8 engine for local data processing without server costs.</p>
+                <a href="#" class="btn btn-outline" style="font-size: 0.9rem; padding: 8px 20px;">Read More</a>
+            </article>
+
+            <article class="card reveal">
+                <div style="height: 200px; background: linear-gradient(45deg, #14001f, #2e0046); border-radius: 8px; margin-bottom: 20px;"></div>
+                <span class="text-gold" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Industry</span>
+                <h3 style="margin: 10px 0;">The Future of Automation AI</h3>
+                <p class="text-muted" style="margin-bottom: 20px;">Will AI replace data analysts? We explore the synergy between human intuition and machine speed.</p>
+                <a href="#" class="btn btn-outline" style="font-size: 0.9rem; padding: 8px 20px;">Read More</a>
+            </article>
+
+            <article class="card reveal">
+                <div style="height: 200px; background: linear-gradient(45deg, #4a0072, #6A0DAD); border-radius: 8px; margin-bottom: 20px;"></div>
+                <span class="text-gold" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Guide</span>
+                <h3 style="margin: 10px 0;">Top 5 CSV Mistakes to Avoid</h3>
+                <p class="text-muted" style="margin-bottom: 20px;">From encoding errors to trailing commas, here is how to ensure your datasets are pristine.</p>
+                <a href="#" class="btn btn-outline" style="font-size: 0.9rem; padding: 8px 20px;">Read More</a>
+            </article>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-bottom">&copy; 2025 Trivox Inc. All rights reserved.</div>
+    </footer>
+</body>
+</html>
