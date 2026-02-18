@@ -3,143 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trivox - Build. Clean. Automate Data Easily</title>
-    <meta name="description" content="Free & Pro tools for everyday data problems. CSV cleaning, automation, and data utilities for students, freelancers, and businesses.">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Trivox - Data Tools & Automation">
-    <meta property="og:description" content="Build. Clean. Automate Data Easily">
-    <meta property="og:image" content="assets/og-image.jpg">
-    <meta property="og:url" content="https://trivox.com">
-    
+    <title>Trivox | Build. Clean. Automate Data Easily</title>
+    <meta name="description" content="Professional data tools for students, analysts, and small businesses. Clean CSVs and automate workflows.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Sticky Navbar -->
-    <nav class="navbar" aria-label="Main navigation">
-        <div class="nav-container">
-            <div class="logo">
-                <svg class="logo-icon" viewBox="0 0 40 40">
-                    <circle cx="20" cy="20" r="18" fill="#6A0DAD"/>
-                    <path d="M15 15 L25 25 M25 15 L15 25" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-                <span>Trivox</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#features" class="nav-link">Features</a></li>
-                <li><a href="tools.html" class="nav-link">Tools</a></li>
-                <li><a href="#pricing" class="nav-link">Pricing</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="nav-actions">
-                <button class="dark-toggle" aria-label="Toggle dark mode">🌙</button>
-                <button class="cta-button nav-cta">Get Started</button>
-            </div>
-        </div>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">TRIVOX</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="btn-primary" onclick="location.href='#tools'">Get Started</button>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg"></div>
+    <header class="hero" id="home">
         <div class="hero-content">
-            <h1 class="hero-title reveal">Build. Clean. Automate <span class="gradient-text">Data</span> Easily</h1>
-            <p class="hero-subtitle reveal">Free & Pro tools for everyday data problems. Trusted by 10K+ students, freelancers & businesses.</p>
-            <div class="hero-cta reveal">
-                <button class="cta-button primary">Start Free Tools</button>
-                <button class="cta-button secondary">View Pricing</button>
+            <span class="badge">Data Automation 2.0</span>
+            <h1>Data Logistics, <br><span class="text-gradient">Refined.</span></h1>
+            <p>The premium suite for cleaning, converting, and automating your data workflows without ever leaving your browser.</p>
+            <div class="hero-btns">
+                <a href="#tools" class="btn-primary">Launch Pro Tools</a>
+                <a href="#pricing" class="btn-outline">View Plans</a>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Features Grid -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title reveal">Powerful Data Tools</h2>
-            <div class="features-grid">
-                <div class="feature-card reveal">
-                    <div class="card-icon">🧹</div>
-                    <h3>CSV Cleaner Pro</h3>
-                    <p>Remove duplicates, trim spaces, normalize cases, handle missing values automatically.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="card-icon">🔄</div>
-                    <h3>Format Converters</h3>
-                    <p>CSV ↔ JSON ↔ Excel. Column filters and data transformation utilities.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="card-icon">⚡</div>
-                    <h3>Automation Flows</h3>
-                    <p>Build no-code data pipelines. Schedule cleaning jobs and transformations.</p>
-                </div>
-            </div>
+    <section class="tool-section" id="tools">
+        <div class="section-header">
+            <h2>CSV Cleaner Pro</h2>
+            <p>Upload your file to experience client-side, privacy-first data refinement.</p>
         </div>
-    </section>
 
-    <!-- Tools Showcase -->
-    <section class="tools-showcase">
-        <div class="container">
-            <h2 class="section-title reveal">Try Our Tools Now</h2>
-            <div class="tools-grid">
-                <a href="tools.html" class="tool-card reveal">
-                    <div class="tool-icon">📊</div>
-                    <h3>CSV Cleaner</h3>
-                    <p>Professional CSV cleaning in seconds</p>
-                    <span class="tool-badge free">FREE</span>
-                </a>
-                <div class="tool-card reveal">
-                    <div class="tool-icon">🔗</div>
-                    <h3>CSV to JSON</h3>
-                    <p>Instant format conversion</p>
-                    <span class="tool-badge free">FREE</span>
+        <div class="glass-card tool-container">
+            <div class="upload-box" id="dropZone">
+                <input type="file" id="csvInput" accept=".csv" hidden>
+                <div class="upload-icon">📁</div>
+                <h3>Click or Drag CSV</h3>
+                <p>Maximum file size: 10MB</p>
+                <button class="btn-secondary" onclick="document.getElementById('csvInput').click()">Select File</button>
+            </div>
+
+            <div id="toolControls" class="tool-controls" style="display: none;">
+                <div class="stats-bar">
+                    <span id="rowCount">Rows: 0</span>
+                    <span id="colCount">Columns: 0</span>
+                </div>
+                <div class="action-grid">
+                    <button class="action-btn" onclick="cleanData('trim')">Trim Spaces</button>
+                    <button class="action-btn" onclick="cleanData('duplicates')">Remove Duplicates</button>
+                    <button class="action-btn" onclick="cleanData('empty')">Drop Empty Rows</button>
+                    <button class="action-btn btn-gold" onclick="downloadCSV()">Download Cleaned .CSV</button>
+                </div>
+                <div class="table-preview-wrapper">
+                    <table id="previewTable"></table>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Banner -->
-    <section class="cta-banner reveal">
-        <div class="container">
-            <h2>Ready to clean your data?</h2>
-            <button class="cta-button primary">Launch Tools</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <svg class="logo-icon" viewBox="0 0 40 40">
-                            <circle cx="20" cy="20" r="18" fill="#6A0DAD"/>
-                            <path d="M15 15 L25 25 M25 15 L15 25" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-                        </svg>
-                        Trivox
-                    </div>
-                    <p>Build. Clean. Automate Data Easily</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Product</h4>
-                    <a href="tools.html">Tools</a>
-                    <a href="#pricing">Pricing</a>
-                    <a href="#blog">Blog</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <a href="#about">About</a>
-                    <a href="#team">Team</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Trivox. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <button class="back-to-top" aria-label="Back to top">↑</button>
+    <div id="toast" class="toast">Action Successful</div>
 
     <script src="script.js"></script>
 </body>
