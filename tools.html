@@ -1,63 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Trivox - Tools</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Trivox Tools</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>Free Data Tools</h1>
+<nav>
+  <div class="logo">Trivox</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+  </div>
+</nav>
 
-<p>Simple utilities to solve everyday data problems.</p>
+<section class="tools">
+  <h1>Free Data Tools</h1>
 
-<h3>CSV Cleaner – Coming Soon</h3>
-<h3>Log Analyzer – Coming Soon</h3>
-<h3>Data Summary Tool – Coming Soon</h3>
+  <div class="tool-card">
+    <h3>CSV Preview Tool</h3>
+    <input type="file" id="csvFile" accept=".csv">
+    <table id="csvTable"></table>
+  </div>
+</section>
 
-<a href="index.html">Back to Home</a>
-<input type="file" id="csvFile">
-<p id="fileName"></p>
-
-<script>
-document.getElementById('csvFile').addEventListener('change', function() {
-  const file = this.files[0];
-  if (file) {
-    document.getElementById('fileName').innerText = "Uploaded: " + file.name;
-  }
-});
-</script>
-
-<h2>CSV Quick Analyzer</h2>
-
-<input type="file" id="csvFile" accept=".csv">
-<p id="result"></p>
+<footer>
+  © 2026 Trivox
+</footer>
 
 <script>
-document.getElementById('csvFile').addEventListener('change', function(event) {
-  const file = event.target.files[0];
+document.getElementById('csvFile').addEventListener('change', function(e) {
+  const file = e.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
+  reader.onload = function(event) {
+    const text = event.target.result;
+    const rows = text.split("\n").slice(0, 6);
+    const table = document.getElementById("csvTable");
+    table.innerHTML = "";
 
-  reader.onload = function(e) {
-    const text = e.target.result;
-    const lines = text.split("\n").filter(line => line.trim() !== "");
-
-    const rowCount = lines.length - 1; // minus header
-    const columnCount = lines[0].split(",").length;
-
-    document.getElementById("result").innerText =
-      "Rows: " + rowCount + " | Columns: " + columnCount;
+    rows.forEach(row => {
+      const cols = row.split(",");
+      const tr = document.createElement("tr");
+      cols.forEach(col => {
+        const td = document.createElement("td");
+        td.innerText = col;
+        tr.appendChild(td);
+      });
+      table.appendChild(tr);
+    });
   };
-
   reader.readAsText(file);
 });
 </script>
 
-
 </body>
 </html>
-
-
-
