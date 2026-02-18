@@ -1,87 +1,58 @@
-let rawData = [];
-let headers = [];
+// Scroll progress bar
 
-// 1. CSV File Processing
-document.getElementById('csvInput').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        const text = event.target.result;
-        const rows = text.split('\n').map(row => row.split(',').map(cell => cell.trim()));
-        
-        headers = rows[0];
-        rawData = rows.slice(1).filter(row => row.length === headers.length);
-        
-        updateUI();
-        showToast("File Uploaded Successfully");
-    };
-    reader.readAsText(file);
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const height = document.body.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / height) * 100;
+  document.querySelector(".scroll-progress").style.width = progress + "%";
 });
 
-function updateUI() {
-    document.getElementById('dropZone').style.display = 'none';
-    document.getElementById('toolControls').style.display = 'block';
-    document.getElementById('rowCount').innerText = `Rows: ${rawData.length}`;
-    document.getElementById('colCount').innerText = `Columns: ${headers.length}`;
-    renderPreview();
-}
+// Reveal animation
 
-function renderPreview() {
-    const table = document.getElementById('previewTable');
-    let html = `<thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead>`;
-    html += `<tbody>${rawData.slice(0, 5).map(row => `<tr>${row.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>`;
-    table.innerHTML = html;
-}
+const reveals = document.querySelectorAll(".reveal");
 
-// 2. Cleaning Functions
-function cleanData(type) {
-    switch(type) {
-        case 'trim':
-            rawData = rawData.map(row => row.map(cell => cell.trim()));
-            showToast("Spaces Trimmed");
-            break;
-        case 'duplicates':
-            const seen = new Set();
-            rawData = rawData.filter(row => {
-                const s = JSON.stringify(row);
-                return seen.has(s) ? false : seen.add(s);
-            });
-            showToast("Duplicates Removed");
-            break;
-        case 'empty':
-            rawData = rawData.filter(row => row.some(cell => cell !== ""));
-            showToast("Empty Rows Dropped");
-            break;
+function revealOnScroll() {
+  const windowHeight = window.innerHeight;
+
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+
+    if (top < windowHeight - 100) {
+      el.classList.add("active");
     }
-    updateUI();
+  });
 }
 
-// 3. Export Logic
-function downloadCSV() {
-    const csvContent = [headers, ...rawData].map(e => e.join(",")).join("\n");
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", "trivox_cleaned_data.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
 
-// 4. Utility Functions
-function showToast(msg) {
-    const toast = document.getElementById('toast');
-    toast.innerText = msg;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
-}
+// Parallax glow
 
-// Navbar Scroll Effect
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) nav.style.background = "rgba(10, 0, 18, 0.95)";
-    else nav.style.background = "rgba(10, 0, 18, 0.8)";
+window.addEventListener("mousemove", e => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 30;
+  const y = (e.clientY / window.innerHeight - 0.5) * 30;
+
+  document.querySelector(".glow1").style.transform =
+    `translate(${x}px, ${y}px)`;
+  document.querySelector(".glow2").style.transform =
+    `translate(${-x}px, ${-y}px)`;
 });
+// ===== SPLIT TEXT HEADING =====
+
+const heading = document.getElementById("animated-heading");
+
+function splitHeadingText() {
+  const text = heading.textContent;
+  heading.innerHTML = "";
+
+  text.split("").forEach((letter, index) => {
+    const span = document.createElement("span");
+
+    span.textContent = letter === " " ? "\u00A0" : letter;
+    span.style.animationDelay = `${index * 0.08}s`;
+
+    heading.appendChild(span);
+  });
+}
+
+splitHeadingText();
