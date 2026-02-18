@@ -16,6 +16,19 @@
 <h3>Data Summary Tool – Coming Soon</h3>
 
 <a href="index.html">Back to Home</a>
+<input type="file" id="csvFile">
+<p id="fileName"></p>
+
+<script>
+document.getElementById('csvFile').addEventListener('change', function() {
+  const file = this.files[0];
+  if (file) {
+    document.getElementById('fileName').innerText = "Uploaded: " + file.name;
+  }
+});
+</script>
+
 
 </body>
 </html>
+
