@@ -1,71 +1,306 @@
-:root {
-    --primary: #6A0DAD;
-    --secondary: #A100A1;
-    --accent: #C77DFF;
-    --gold: #D4AF37;
-    --bg-dark: #0a0012;
-    --text-main: #F8F4FF;
-    --glass: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Inter, sans-serif;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    background: radial-gradient(circle at top right, #1a0033, #0a0012);
-    min-height: 200vh;
+  background:#0a0014;
+  color:white;
+  overflow-x:hidden;
 }
 
-/* Typography */
-h1, h2, .logo { font-family: 'Playfair Display', serif; }
-.text-gradient { background: linear-gradient(to right, var(--accent), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+/* Scroll progress */
 
-/* Navbar */
-nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.5rem 8%; position: fixed; width: 100%; top: 0;
-    backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); z-index: 1000;
+.scroll-progress {
+  position:fixed;
+  top:0;
+  left:0;
+  height:3px;
+  width:0%;
+  background:linear-gradient(to right,#a855f7,#facc15);
+  z-index:100;
 }
 
-.nav-links { display: flex; list-style: none; gap: 2rem; }
-.nav-links a { text-decoration: none; color: white; font-weight: 500; font-size: 0.9rem; transition: var(--transition); }
-.nav-links a:hover { color: var(--accent); }
+/* GRID */
 
-/* Hero */
-.hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
-.badge { background: var(--glass); border: 1px solid var(--accent); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
-.hero h1 { font-size: 5rem; margin: 1.5rem 0; line-height: 1.1; }
-.hero p { max-width: 600px; margin: 0 auto 2rem; opacity: 0.8; }
+.background-grid {
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size:50px 50px;
+  z-index:-3;
+  animation:moveGrid 25s linear infinite;
+}
 
-/* Buttons */
-.btn-primary { background: var(--primary); color: white; border: none; padding: 12px 30px; border-radius: 5px; cursor: pointer; transition: var(--transition); }
-.btn-primary:hover { background: var(--secondary); box-shadow: 0 0 20px rgba(161, 0, 161, 0.5); transform: translateY(-2px); }
-.btn-outline { border: 1px solid var(--glass-border); color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin-left: 10px; }
+@keyframes moveGrid {
+  to { background-position:50px 50px; }
+}
 
-/* Tool Section */
-.tool-section { padding: 100px 8%; text-align: center; }
-.glass-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px; backdrop-filter: blur(10px); }
-.upload-box { border: 2px dashed var(--glass-border); border-radius: 15px; padding: 60px; transition: var(--transition); cursor: pointer; }
-.upload-box:hover { border-color: var(--accent); background: rgba(199, 125, 255, 0.05); }
+/* GLOW */
 
-/* Data Table */
-.table-preview-wrapper { margin-top: 30px; overflow-x: auto; border-radius: 10px; border: 1px solid var(--glass-border); }
-table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); font-size: 0.85rem; }
-th { background: var(--primary); padding: 12px; text-align: left; }
-td { padding: 10px; border-bottom: 1px solid var(--glass-border); text-align: left; }
+.glow {
+  position:fixed;
+  width:600px;
+  height:600px;
+  border-radius:50%;
+  filter:blur(150px);
+  z-index:-2;
+  animation:float 10s ease-in-out infinite alternate;
+}
 
-/* Tool Controls */
-.action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
-.action-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; padding: 10px; border-radius: 8px; cursor: pointer; }
-.action-btn:hover { background: var(--accent); }
-.btn-gold { background: var(--gold); color: black; font-weight: bold; }
+.glow1 {
+  background:#9333ea;
+  top:-200px;
+  left:-200px;
+}
 
-/* Toast */
-.toast { position: fixed; bottom: 30px; right: 30px; background: var(--gold); color: black; padding: 12px 25px; border-radius: 5px; font-weight: bold; opacity: 0; transition: 0.3s; pointer-events: none; }
-.toast.show { opacity: 1; transform: translateY(-10px); }
+.glow2 {
+  background:#facc15;
+  bottom:-200px;
+  right:-200px;
+}
+
+@keyframes float {
+  to { transform:translateY(40px); }
+}
+
+/* NAV */
+
+.navbar {
+  position:fixed;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.05);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  z-index:99;
+  animation:slideDown 1s ease forwards;
+}
+
+@keyframes slideDown {
+  from { transform:translateY(-100%); opacity:0; }
+  to { transform:translateY(0); opacity:1; }
+}
+
+.logo {
+  font-weight:bold;
+  background:linear-gradient(to right,#a855f7,#facc15);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.nav-links a {
+  margin:0 15px;
+  text-decoration:none;
+  color:#ccc;
+}
+
+/* HERO */
+
+.hero {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:100px 20px;
+}
+
+.hero-title {
+  font-size:8vw;
+  font-weight:900;
+}
+
+.refined {
+  font-size:3rem;
+}
+
+.subtitle {
+  max-width:600px;
+  margin:20px 0;
+  color:#bbb;
+}
+
+.primary-btn {
+  padding:12px 30px;
+  background:#9333ea;
+  border:none;
+  border-radius:10px;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.primary-btn:hover {
+  transform:scale(1.1);
+}
+
+.secondary-btn {
+  padding:12px 30px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:10px;
+  color:white;
+  margin-left:10px;
+}
+
+/* SECTIONS */
+
+.section {
+  padding:120px 20px;
+  text-align:center;
+}
+
+.section.dark {
+  background:rgba(255,255,255,0.02);
+}
+
+.section-title {
+  font-size:2.5rem;
+  margin-bottom:40px;
+}
+
+.cards {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:40px;
+}
+
+.card {
+  width:250px;
+  padding:30px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:translateY(-10px);
+}
+
+/* REVEAL */
+
+.reveal {
+  opacity:0;
+  transform:translateY(50px);
+  transition:1s ease;
+}
+
+.reveal.active {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* SHIMMER */
+
+.shimmer {
+  background:linear-gradient(90deg,#a855f7,#facc15,#a855f7);
+  background-size:200%;
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:shimmerMove 4s linear infinite;
+}
+
+@keyframes shimmerMove {
+  to { background-position:200%; }
+}
+/* ===== ADVANCED HEADING ANIMATION ===== */
+
+.hero-title {
+  font-size: 8vw;
+  font-weight: 900;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.hero-title span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(80px) rotateX(90deg);
+  filter: blur(10px);
+  animation: letterReveal 1s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+/* Letter reveal animation */
+
+@keyframes letterReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+    filter: blur(0px);
+  }
+}
+
+/* Floating breathing effect */
+
+.hero-title {
+  animation: floatTitle 6s ease-in-out infinite alternate;
+}
+
+@keyframes floatTitle {
+  from { transform: translateY(0px); }
+  to { transform: translateY(15px); }
+}
+
+/* Gradient animated wave */
+
+.hero-title span {
+  background: linear-gradient(
+    90deg,
+    #a855f7,
+    #facc15,
+    #9333ea
+  );
+  background-size: 200%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation:
+    letterReveal 1s cubic-bezier(.22,1,.36,1) forwards,
+    gradientShift 5s linear infinite;
+}
+
+@keyframes gradientShift {
+  to { background-position: 200% center; }
+}
+
+/* Tag animation upgrade */
+
+.tag {
+  letter-spacing: 6px;
+  font-size: 12px;
+  color: #a855f7;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tag::after {
+  content: "";
+  position: absolute;
+  left: -100%;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right,#a855f7,#facc15);
+  animation: sweepLine 3s infinite;
+}
+
+@keyframes sweepLine {
+  to { left: 100%; }
+}
