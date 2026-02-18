@@ -1,60 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Trivox Tools</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Cleaner Pro - Trivox</title>
+    <meta name="description" content="Professional CSV cleaning tool. Remove duplicates, trim spaces, normalize data, and more.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+<body class="tools-page">
+    <!-- Same navbar as index -->
+    <nav class="navbar" aria-label="Main navigation">
+        <!-- [Same navbar code as index.html] -->
+        <div class="nav-container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 40 40">
+                    <circle cx="20" cy="20" r="18" fill="#6A0DAD"/>
+                    <path d="M15 15 L25 25 M25 15 L15 25" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <span>Trivox</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#" class="nav-link active">Tools</a></li>
+                <li><a href="#pricing" class="nav-link">Pricing</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="dark-toggle" aria-label="Toggle dark mode">🌙</button>
+            </div>
+        </div>
+    </nav>
 
-<body>
+    <main class="tools-main">
+        <section class="tool-hero">
+            <div class="container">
+                <div class="tool-header">
+                    <h1 class="tool-title">CSV Cleaner Pro</h1>
+                    <p class="tool-subtitle">Clean your CSV files in seconds. Privacy-safe, client-side processing.</p>
+                </div>
+            </div>
+        </section>
 
-<nav>
-  <div class="logo">Trivox</div>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-  </div>
-</nav>
+        <section class="tool-content">
+            <div class="container">
+                <div class="tool-grid">
+                    <!-- Upload Panel -->
+                    <div class="tool-panel upload-panel">
+                        <h2>1. Upload CSV</h2>
+                        <div class="file-upload">
+                            <input type="file" id="csvFile" accept=".csv" aria-label="Upload CSV file">
+                            <label for="csvFile" class="file-label">
+                                <svg viewBox="0 0 24 24" class="upload-icon">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                    <line x1="12" y1="18" x2="12" y2="12"/>
+                                    <line x1="9.5" y1="15.5" x2="12" y2="12"/>
+                                    <line x1="14.5" y1="15.5" x2="12" y2="12"/>
+                                </svg>
+                                Choose CSV File
+                            </label>
+                            <div id="fileInfo" class="file-info"></div>
+                        </div>
+                        
+                        <!-- Cleaning Options -->
+                        <div class="cleaning-options">
+                            <h3>Cleaning Options</h3>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="removeDuplicates" checked>
+                                Remove duplicates
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="trimSpaces" checked>
+                                Trim whitespace
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="normalizeCase">
+                                Normalize case
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="removeEmpty">
+                                Remove empty rows
+                            </label>
+                        </div>
+                        
+                        <button id="processBtn" class="cta-button primary" disabled>Process CSV</button>
+                    </div>
 
-<section class="tools">
-  <h1>Free Data Tools</h1>
+                    <!-- Preview Panel -->
+                    <div class="tool-panel preview-panel">
+                        <h2>2. Preview & Stats</h2>
+                        <div id="stats" class="stats-panel"></div>
+                        <div class="table-container">
+                            <table id="previewTable" class="preview-table"></table>
+                        </div>
+                        <button id="downloadBtn" class="cta-button success" disabled>Download Clean CSV</button>
+                        <button id="jsonBtn" class="cta-button secondary" disabled>Export JSON</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <div class="tool-card">
-    <h3>CSV Preview Tool</h3>
-    <input type="file" id="csvFile" accept=".csv">
-    <table id="csvTable"></table>
-  </div>
-</section>
+    <!-- Same footer as index -->
+    <footer class="footer"><!-- [Same footer code] --></footer>
 
-<footer>
-  © 2026 Trivox
-</footer>
-
-<script>
-document.getElementById('csvFile').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function(event) {
-    const text = event.target.result;
-    const rows = text.split("\n").slice(0, 6);
-    const table = document.getElementById("csvTable");
-    table.innerHTML = "";
-
-    rows.forEach(row => {
-      const cols = row.split(",");
-      const tr = document.createElement("tr");
-      cols.forEach(col => {
-        const td = document.createElement("td");
-        td.innerText = col;
-        tr.appendChild(td);
-      });
-      table.appendChild(tr);
-    });
-  };
-  reader.readAsText(file);
-});
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
